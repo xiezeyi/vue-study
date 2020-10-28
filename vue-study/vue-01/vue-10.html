@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app" id="app">
+        <input v-model="inputdata" type="text" @keyup.enter="addli">
+        <ul>
+            <li v-for="(item,index) in list">
+                    <p @click="removeli(index)">{{index}}{{item}}</p>
+            </li>
+        </ul>
+        <span v-show="list.length!=0">总数:{{list.length }}</span>
+        <input v-if="list.length!=0" type="button" @click="clear" value="清空全部">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app=new Vue({
+            el:"#app",
+            data:{
+                list:["写代码","吃饭饭","睡觉觉"],
+                inputdata:"好好学习"
+            },
+            methods:{
+                addli:function(){
+                    this.list.push(this.inputdata)  
+                },
+                removeli:function(index){
+                    this.list.splice(index,1);
+                },
+                clear:function(){
+                    this.list=[]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

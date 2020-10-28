@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="添加数据" @click="add">
+        <input type="button" value="移除数据" @click="remove">
+        <ul>
+          <li v-for="(item,index) in arr" :title="item">
+            {{index}}{{item}}
+          </li>
+          <li v-for="(item,index) in objArr" :title="item.name">
+            {{index}}{{item.name}}
+          </li>
+        </ul>
+        <input type="button" value="for-on补充" @click="doIt(666,'老铁')">
+        <input type="text" @keyup.enter="satHi">
+        <input type="text" v-model="message" @keyup.enter="getmessage">
+        <input type="button" value="修改的message" @click="setmessage">
+        <h2>{{message}}</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                arr:[1,2,3,4,5],
+                objArr:[
+                    {name:"jack"},
+                    {name:"rose"}
+                ],
+                message:"xzy测试Model"
+            },
+            methods:{
+                add:function(){
+                this.objArr.push({name:"xzy"})
+                },
+                remove:function(){
+                    this.objArr.shift()
+                },
+                doIt:function(p1,p2){
+                    console.log(p1)
+                    console.log(p2)
+                },
+                satHi:function(){
+                    console.log("吃了没")
+                },
+                getmessage:function(){
+                    alert(this.message)
+                },
+                setmessage:function(){
+                    this.message="修改的message"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
