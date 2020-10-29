@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app" id="app">
+        <input type="text" v-model="city" @keyup.enter="searchweather">
+        <input type="button" value="搜索">
+        <ul>
+            <li>
+
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                city:""
+            },
+            methods:{
+                searchweather:function(){
+                    axios.get('http://wthrcdn.etouch.cn/wearther_mini?city='+this.city)
+                    .then(function(response){
+                        console.log(response)
+                    })
+                    .catch(function(err){
+
+                    })
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
